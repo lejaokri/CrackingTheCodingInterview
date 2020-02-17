@@ -1,5 +1,6 @@
 import unittest
 
+
 def isUnique1(s):
     """
         Implement an algorithm to determine if a string has all unique character.
@@ -10,13 +11,14 @@ def isUnique1(s):
     c_map = [0] * 256
     for c in s:
         idx = ord(c)
-        assert idx >= 0 and idx <= 255,"Invalid character '{0}' detected.".format(c)
+        assert 0 <= idx <= 255, "Invalid character '{0}' detected.".format(c)
 
         if c_map[ord(c)]:
             return False
         c_map[ord(c)] = 1
 
     return True
+
 
 def isUnique2(s):
     """
@@ -27,13 +29,14 @@ def isUnique2(s):
     bitmap = 0
     for c in s:
         idx = ord(c) - ord('a')
-        assert idx >= 0 and idx <= 31, "Invalid character '{0}' detected.".format(c)
+        assert 0 <= idx <= 31, "Invalid character '{0}' detected.".format(c)
 
         if bitmap & (1 << idx):
             return False
         bitmap |= (1 << idx)
 
     return True
+
 
 class TestIsUnique(unittest.TestCase):
 
@@ -54,6 +57,7 @@ class TestIsUnique(unittest.TestCase):
         self.assertFalse(isUnique2('abb'))
         self.assertFalse(isUnique2('aab'))
         self.assertFalse(isUnique2('aba'))
+
 
 if __name__ == '__main__':
     unittest.main()
